@@ -1,0 +1,234 @@
+@font-face {
+    font-family: 'Comic Sans MS';
+    src: url('https://db.onlinewebfonts.com/t/7cc6719bd5f0310be3150ba33418e72e.eot');
+    src: url('https://db.onlinewebfonts.com/t/7cc6719bd5f0310be3150ba33418e72e.eot?#iefix') format('embedded-opentype'),
+         url('https://db.onlinewebfonts.com/t/7cc6719bd5f0310be3150ba33418e72e.woff2') format('woff2'),
+         url('https://db.onlinewebfonts.com/t/7cc6719bd5f0310be3150ba33418e72e.woff') format('woff'),
+         url('https://db.onlinewebfonts.com/t/7cc6719bd5f0310be3150ba33418e72e.ttf') format('truetype'),
+         url('https://db.onlinewebfonts.com/t/7cc6719bd5f0310be3150ba33418e72e.svg#Comic Sans MS') format('svg');
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'Comic Neue', sans-serif;
+    color: #5c4b37;
+}
+
+body {
+    background-color: #f0e6d2;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.doge-ghost {
+    max-width: 90%;
+    max-height: 90%;
+    opacity: 0.25;
+}
+
+.exchange-container {
+    text-align: center;
+    z-index: 2;
+    padding: 2rem;
+}
+
+.exchange-rate {
+    font-size: 8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.philosophy {
+    font-size: 2rem;
+    margin-top: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 2.5rem;
+}
+
+.philosophy:hover {
+    text-shadow: 0 0 5px #f2a900;
+}
+
+/* For hiding the philosophy text initially */
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.qr-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    text-align: center;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+doge-qr {
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+
+.qr-caption {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Party mode styles */
+.party-mode * {
+    transition: all 0.2s ease;
+}
+
+.party-mode h1, 
+.party-mode p, 
+.party-mode doge-qr, 
+.party-mode .qr-caption {
+    animation: glow 0.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #f2a900, 0 0 20px #f2a900;
+    }
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 15px #cb9e26, 0 0 20px #cb9e26, 0 0 25px #cb9e26;
+    }
+}
+
+/* Responsive QR code sizing for desktop */
+.qr-code {
+    --doge-qr-size: 100px; /* Default size for desktop */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .exchange-rate {
+        font-size: 4rem;
+    }
+    
+    .philosophy {
+        font-size: 1.2rem;
+        min-height: 1.5rem;
+    }
+    
+    /* On mobile, center everything vertically */
+    body {
+        justify-content: center;
+        align-items: center;
+        padding-top: 0;
+        padding-bottom: 0; /* Remove any bottom padding */
+        min-height: 100vh;
+        margin: 0; /* Ensure no margins are pushing content */
+    }
+    
+    /* Ensure exchange container is properly centered */
+    .exchange-container {
+        flex: 0 0 auto;
+        margin: 0 auto; /* Center horizontally and remove vertical margins */
+        padding: 1rem;
+        position: relative; /* Ensure position context */
+        top: -20px; /* Slight adjustment to visually center better */
+    }
+    
+    .qr-container {
+        position: fixed;
+        bottom: 20px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 0;
+        width: auto;
+    }
+        
+    /* Override the QR code size on mobile */
+    .qr-code {
+        --doge-qr-size: 80px;
+    }
+    
+    doge-qr {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .qr-caption {
+        font-size: 0.7rem;
+        margin-top: 5px;
+    }
+}
+
+/* Loading spinner styles */
+.loading-spinner {
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    vertical-align: middle;
+    border: 0.5rem solid #f0e6d2;
+    border-right-color: #f2a900;
+    border-radius: 50%;
+    animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#exchange-value {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4rem;
+    vertical-align: middle; 
+    line-height: 1;
+    height: 4rem; /* Match the spinner height */
+}
+
+/* Style for the actual value (when "1" is shown) */
+#exchange-value.loaded-value {
+    vertical-align: baseline; /* Align with the rest of the text */
+    font-size: inherit; /* Match parent font size */
+    height: auto; /* Reset height */
+    display: inline; /* Change from flex to inline */
+}
+
+/* Media query adjustments for loading spinner */
+@media (max-width: 768px) {
+    /* Mobile spinner size adjustments */
+    .loading-spinner {
+        width: 2rem;
+        height: 2rem;
+        border-width: 0.3rem;
+    }
+    
+    #exchange-value {
+        min-width: 2rem;
+        height: 2rem; /* Match smaller spinner height on mobile */
+    }
+} 

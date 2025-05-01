@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official DOGE Exchange</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Preconnect to font domains -->
+    <link rel="preconnect" href="https://db.onlinewebfonts.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fallback Comic Sans-like font from Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Other stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://fetch.dogecoin.org/initial.css">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://fetch.dogecoin.org/doge-qr.js"></script>
+</head>
+<body>
+    <div class="background-container">
+        <img src="images/doge-ghost.png" alt="Doge with sunglasses" class="doge-ghost">
+    </div>
+    
+    <main class="exchange-container">
+        <h1 class="exchange-rate">
+            1 DOGE = <span id="exchange-value">
+                <span class="loading-spinner"></span>
+            </span> DOGE
+        </h1>
+        <p class="philosophy hidden" id="trigger-party">True Value Never Changes</p>
+    </main>
+    
+    <div class="qr-container">
+        <doge-qr address="DLGzkr1aRrGgmiXwLTFCundYNWbYdBJ3zm" theme="such-doge" size="sm"></doge-qr>
+        <p class="qr-caption">Such coffee? ☕</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+    
+    <div style="display: none; visibility: hidden; width: 0; height: 0; overflow: hidden; position: absolute;">
+        <script type="text/javascript" src="https://pub39.bravenet.com/counter/code.php?id=409924&usernum=3264298367&cpv=3"></script>
+    </div>
+</body>
+</html> 
